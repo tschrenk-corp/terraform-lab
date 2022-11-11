@@ -51,13 +51,14 @@ resource "ibm_is_subnet" "subnet2" {
   resource_group = data.ibm_resource_group.rg.id
 }
 
-//resource "ibm_is_subnet" "subnet3" {
-//  name            = "subnet3"
-//  vpc             = "${ibm_is_vpc.vpc1.id}"
-//  zone            = "${var.zone3}"
-//  ipv4_cidr_block = "${var.zone3_cidr}"
-//  depends_on      = [ibm_is_vpc_address_prefix.vpc-ap3]
-//}
+resource "ibm_is_subnet" "subnet3" {
+  name            = "subnet3"
+  vpc             = "${ibm_is_vpc.vpc1.id}"
+  zone            = "${var.zone3}"
+  ipv4_cidr_block = "${var.zone3_cidr}"
+  depends_on      = [ibm_is_vpc_address_prefix.vpc-ap3]
+  resource_group = data.ibm_resource_group.rg.id
+}
 
 resource "ibm_is_instance" "instance1" {
   name    = "instance1"
