@@ -39,7 +39,7 @@ variable "zone2_cidr" {
 
 variable "zone3_cidr" {
   default = "172.16.3.0/24"
-  description = "Thomas was here1"
+  description = "Thomas was here2"
 }
 
 variable "ssh_key_name" {
