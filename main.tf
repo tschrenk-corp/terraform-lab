@@ -56,7 +56,7 @@ resource "ibm_is_subnet" "subnet3" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone3}"
   ipv4_cidr_block = "${var.zone3_cidr}"
-  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
+  depends_on      = [ibm_is_vpc_address_prefix.vpc-ap3]
   resource_group = data.ibm_resource_group.rg.id
 }
 
@@ -99,7 +99,7 @@ resource "ibm_is_instance" "instance3" {
   }
   vpc  = "${ibm_is_vpc.vpc1.id}"
   zone = "${var.zone3}"
-  keys = ["${ibm_is_ssh_key.ssh1.id}"]
+  keys = ["${data.ibm_is_ssh_key.ssh1.id}"]
   user_data = "${data.template_cloudinit_config.cloud-init-apptier.rendered}"
 }
 
