@@ -117,7 +117,7 @@ resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
     port_min = "22"
     port_max = "22"
   }
-  depends_on = [ibm_is_floating_ip.floatingip1, ibm_is_floating_ip.floatingip2, ibm_is_floating_ip.floatingip3]
+  depends_on = [ibm_is_floating_ip.floatingip3]
 }
 
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_80" {
