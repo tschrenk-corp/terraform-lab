@@ -26,6 +26,13 @@ resource "ibm_is_vpc_address_prefix" "vpc-ap2" {
   cidr = var.zone2_cidr
 }
 
+resource "ibm_is_vpc_address_prefix" "vpc-ap3" {
+  name = "vpc-ap3"
+  zone = "${var.zone3}"
+  vpc  = "${ibm_is_vpc.vpc1.id}"
+  cidr = "${var.zone3_cidr}"
+}
+
 resource "ibm_is_subnet" "subnet1" {
   name            = "subnet1"
   vpc             = ibm_is_vpc.vpc1.id
@@ -42,6 +49,14 @@ resource "ibm_is_subnet" "subnet2" {
   ipv4_cidr_block = var.zone2_cidr
   depends_on      = [ibm_is_vpc_address_prefix.vpc-ap2]
   resource_group = data.ibm_resource_group.rg.id
+}
+
+resource "ibm_is_subnet" "subnet3" {
+  name            = "subnet3"
+  vpc             = "${ibm_is_vpc.vpc1.id}"
+  zone            = "${var.zone3}"
+  ipv4_cidr_block = "${var.zone3_cidr}"
+  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
 }
 
 resource "ibm_is_instance" "instance1" {
