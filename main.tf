@@ -106,6 +106,7 @@ resource "ibm_is_instance" "instance3" {
 resource "ibm_is_floating_ip" "floatingip3" {
   name = "fip3"
   target = "${ibm_is_instance.instance3.primary_network_interface.0.id}"
+  resource_group = data.ibm_resource_group.rg.id
 }
 
 
